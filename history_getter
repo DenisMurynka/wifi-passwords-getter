@@ -1,0 +1,6 @@
+strings $(find ~ -name places.sqlite) |sed -ne 's/.*\(http[^"]*\).*/\1/p' |sort -nr |uniq > /tmp/history.txt
+strings $(find ~ -iname '*history*' |grep -i chrom) |sed -ne 's/.*\(http[^"]*\).*/\1/p' |sort -nr |uniq >> /tmp/history.txt
+
+awk '{print $1}' /tmp/urllist.txt   > /tmp/history.txt
+echo "Found `cat /tmp/urls.txt |wc -l` URLs listed in /tmp/urls.txt uncleaned version is /tmp/urllist.txt"
+xdg-open /tmp/urls.txt
